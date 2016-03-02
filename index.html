@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Procedural Music</title>
+
+		<script src="js/vendors/jquery-2.2.0.min.js"></script>
+		<script src="js/Harmony.js"></script>
+		<script src="js/Synth.js"></script>
+
+	</head>
+	<body>
+		Yet another WebAudio test
+		
+		<script>
+			var chordsSynth = new Synth();
+
+			chordsSynth.playChords([
+				['C', 4, 2000],
+				['C', 4, 2000],
+
+				['Em', 4, 1000],
+				['D', 4, 1000],
+				['G', 4, 1000],
+				['Bm', 4, 1000],
+			], false);
+
+		</script>
+	</body>
+</html>

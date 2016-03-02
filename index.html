@@ -8,23 +8,71 @@
 		<script src="js/Harmony.js"></script>
 		<script src="js/Synth.js"></script>
 
+		<style>
+			.chords-log {
+				width: 400px;
+				overflow: hidden; 
+				border: 1px solid #ccc;
+				border-right: none;
+				border-bottom: none;
+			}
+
+			.chords-log span {
+				display: block;
+				float: left;
+				width: 50px;
+				text-align: center;
+				line-height: 50px;
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				box-sizing: border-box;
+			}
+
+			.chords-log span.beats-2 {
+				width: 100px;
+			}
+		</style>
 	</head>
 	<body>
-		Yet another WebAudio test
+		<h2>Played chords</h2>
 		
+		<div class="chords-log">
+
+		</div>
+
 		<script>
-			var chordsSynth = new Synth();
+			$( function() {
+				
+				var chordsSynth = new Synth();
 
-			chordsSynth.playChords([
-				['C', 4, 2000],
-				['C', 4, 2000],
+				chordsSynth.on('chordPlayed', function(chordName, octave, duration) {
+					if( duration == 2000 ) {
+						var elClass = 'beats-2';
+					} else {
+						var elClass = 'beats-1';
+					}
+					
+					$('.chords-log').append('<span class="'+elClass+'">'+chordName+octave+'</span>');
+				});
 
-				['Em', 4, 1000],
-				['D', 4, 1000],
-				['G', 4, 1000],
-				['Bm', 4, 1000],
-			], false);
+				chordsSynth.playChords([
+					['C', 4, 2000],
+					['C', 4, 2000],
 
+					['Em', 4, 1000],
+					['D', 4, 1000],
+					['G', 4, 1000],
+					['Bm', 4, 1000],
+
+					['E', 4, 2000],
+					['Eaug', 4, 2000],
+					
+					['F', 4, 1000],
+					['G', 4, 1000],
+					['A', 5, 1000],
+				], false);
+
+			})
 		</script>
 	</body>
 </html>
